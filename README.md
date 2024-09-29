@@ -153,10 +153,14 @@ go build -o iam-test-framework cmd/main.go
 ./iam-test-framework
 
 2. Follow the prompts to select the IAM functionality you wish to test:
-User Registration
-OIDC Authorization
-Token Issuance
-User Info Retrieval
+
+      User Registration
+
+      OIDC Authorization
+
+      Token Issuance
+
+      User Info Retrieval
 
 3. Input the necessary parameters as prompted, based on the selected functionality.
 
