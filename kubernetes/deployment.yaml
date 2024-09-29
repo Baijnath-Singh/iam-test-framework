@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iam-test-framework
+  labels:
+    app: iam-test-framework
+spec:
+  replicas: 1  # Number of replicas to run
+  selector:
+    matchLabels:
+      app: iam-test-framework
+  template:
+    metadata:
+      labels:
+        app: iam-test-framework
+    spec:
+      containers:
+      - name: iam-test-framework
+        image: your-docker-repo/iam-test-framework:latest  # Replace with your Docker image
+        ports:
+        - containerPort: 8080  # The port your application listens on
+        env:
+        - name: CONFIG_PATH
+          value: "/config/config.json"  # Path to the config file in the container
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config  # Mount path for the config file
+      volumes:
+      - name: config-volume
+        configMap:
+          name: iam-config  # Name of the ConfigMap containing your config.json
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iam-test-framework
+spec:
+  type: ClusterIP  # or LoadBalancer based on your requirement
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: iam-test-framework

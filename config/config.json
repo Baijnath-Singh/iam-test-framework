@@ -1,0 +1,56 @@
+{
+  "iam_solutions": {
+    "zitadel": {
+      "domain": "http://127.0.0.1.sslip.io:8080",
+      "registration_endpoint": "/v2/users/human",
+      "login_endpoint": "/oauth/v2/login",
+      "authorize_endpoint": "/oauth/v2/authorize",
+      "token_endpoint": "/oauth/v2/token",
+      "userinfo_endpoint": "/v2/users",
+      "logout_endpoint": "/oauth/v2/logout",
+      "token_request_params": {
+        "client_credentials": {
+          "grant_type": "client_credentials",
+          "client_id": "nvo",
+          "client_secret": "xVERaGld3aBl87plN5Zo1QdwCAaADyOYHLhX8zT5ip3WDZwtYJ28GGjUqVDC2hbS",
+          "scope": "openid profile urn:zitadel:iam:org:project:id:zitadel:aud"
+        }
+      }
+    },
+    "keycloak": {
+      "domain": "http://your-keycloak-domain.com",
+      "registration_endpoint": "/auth/realms/{realm}/protocol/openid-connect/registration",
+      "login_endpoint": "/auth/realms/{realm}/protocol/openid-connect/token",
+      "authorize_endpoint": "/auth/realms/{realm}/protocol/openid-connect/auth",
+      "token_endpoint": "/auth/realms/{realm}/protocol/openid-connect/token",
+      "userinfo_endpoint": "/auth/realms/{realm}/protocol/openid-connect/userinfo",
+      "logout_endpoint": "/auth/realms/{realm}/protocol/openid-connect/logout",
+      "token_request_params": {
+        "client_credentials": {
+          "grant_type": "client_credentials",
+          "client_id": "your-keycloak-client-id",
+          "client_secret": "your-keycloak-client-secret",
+          "scope": "openid"
+        }
+      }
+    },
+    "casdoor": {
+      "domain": "http://your-casdoor-domain.com",
+      "registration_endpoint": "/api/door/register",
+      "login_endpoint": "/api/door/login",
+      "authorize_endpoint": "/api/door/authorize",
+      "token_endpoint": "/api/door/token",
+      "userinfo_endpoint": "/api/door/userinfo",
+      "logout_endpoint": "/api/door/logout",
+      "token_request_params": {
+        "client_credentials": {
+          "grant_type": "client_credentials",
+          "client_id": "your-casdoor-client-id",
+          "client_secret": "your-casdoor-client-secret",
+          "scope": "openid"
+        }
+      }
+    }
+  },
+  "default_solution": "zitadel"
+}

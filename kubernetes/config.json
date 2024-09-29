@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: iam-config
+data:
+  config.json: |
+    {
+      "iam_solutions": {
+        "zitadel": {
+          "domain": "https://127.0.0.1.sslip.io:8080",
+          "registration_endpoint": "/oauth/v2/register",
+          "login_endpoint": "/oauth/v2/login",
+          "authorize_endpoint": "/oauth/v2/authorize",
+          "token_endpoint": "/oauth/v2/token",
+          "userinfo_endpoint": "/oauth/v2/userinfo",
+          "logout_endpoint": "/oauth/v2/logout"
+        },
+        "keycloak": {
+          "domain": "https://your-keycloak-domain.com",
+          "registration_endpoint": "/auth/realms/{realm}/protocol/openid-connect/registration",
+          "login_endpoint": "/auth/realms/{realm}/protocol/openid-connect/token",
+          "authorize_endpoint": "/auth/realms/{realm}/protocol/openid-connect/auth",
+          "token_endpoint": "/auth/realms/{realm}/protocol/openid-connect/token",
+          "userinfo_endpoint": "/auth/realms/{realm}/protocol/openid-connect/userinfo",
+          "logout_endpoint": "/auth/realms/{realm}/protocol/openid-connect/logout"
+        },
+        "casdoor": {
+          "domain": "https://your-casdoor-domain.com",
+          "registration_endpoint": "/api/door/register",
+          "login_endpoint": "/api/door/login",
+          "authorize_endpoint": "/api/door/authorize",
+          "token_endpoint": "/api/door/token",
+          "userinfo_endpoint": "/api/door/userinfo",
+          "logout_endpoint": "/api/door/logout"
+        }
+      }
+    }
