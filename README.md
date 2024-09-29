@@ -6,12 +6,10 @@ The IAM Test Framework is a generic testing framework designed to validate the b
 ## Features
 - User Registration
 - User Login
-- Single Sign-On (SSO) via OIDC
 - OIDC Authorization Flow
 - Token Issuance and Validation
 - User Info Retrieval
 - Logout Functionality
-- Error Handling and Responses
 
 ## Requirements
 - Go 1.16 or higher
