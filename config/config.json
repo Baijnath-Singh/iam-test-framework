@@ -8,6 +8,8 @@
       "token_endpoint": "/oauth/v2/token",
       "userinfo_endpoint": "/v2/users",
       "logout_endpoint": "/oauth/v2/logout",
+      "app_client_id": "286469895548370956",
+      "app_scope": "openid profile email",
       "token_request_params": {
         "client_credentials": {
           "grant_type": "client_credentials",

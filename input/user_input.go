@@ -9,7 +9,7 @@ import (
 // GetUserChoice prompts the user to select an IAM functionality to test.
 func GetUserChoice() string {
 	var choice string
-	fmt.Print("Enter your choice (1-7): ")
+	fmt.Print("Enter your choice (1-4): ")
 	fmt.Scanln(&choice) // Read user input for choice
 	return choice
 }

@@ -5,7 +5,6 @@ import (
 	"iam-test-framework/api/routes" // Change to your actual module name
 	"iam-test-framework/config"     // Change to your actual module name
 	"iam-test-framework/input"      // Change to your actual module name
-	"iam-test-framework/logger"     // Change to your actual module name
 )
 
 func main() {
@@ -17,7 +16,7 @@ func main() {
 	}
 
 	// Set up logging - Provide the path to the log file
-	logger.NewLogger("logger/app.log") // Adjust the path as necessary
+	//logger.NewLogger("logger/app.log") // Adjust the path as necessary
 
 	// User input for selecting the IAM functionality to test
 	fmt.Println("Select the IAM functionality to test:")

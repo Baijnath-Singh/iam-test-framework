@@ -88,8 +88,8 @@ func OIDCAuthorization() {
 		return
 	}
 
-	// Get client ID, redirect URI, and scope from environment variables or prompt user
-	clientID := os.Getenv("CLIENT_ID")
+	// Get client ID, scope from config or prompt user
+	clientID := solutionConfig.AppClientID
 	if clientID == "" {
 		fmt.Print("Enter the Client ID: ")
 		clientID = strings.TrimSpace(input.GetUserInput()) // Trim any extra spaces
@@ -97,7 +97,7 @@ func OIDCAuthorization() {
 
 	redirectURI := "http://localhost:8081/callback" // Local callback server
 
-	scope := os.Getenv("SCOPE")
+	scope := solutionConfig.AppScope
 	if scope == "" {
 		fmt.Print("Enter the Scope (e.g., openid profile email): ")
 		scope = strings.TrimSpace(input.GetUserInput()) // Trim any extra spaces
@@ -174,6 +174,14 @@ func startCallbackServer(tokenEndpoint, clientID, redirectURI, codeVerifier stri
 			fmt.Println("Error: Authorization code not found in the request.")
 			return
 		}
+		// Print the authorization code to the console
+		fmt.Printf("Authorization code: %s\n", code)
+
+		// Pause here to let you manually copy the authorization code and open the callback URL manually
+		fmt.Println("You can now manually use the authorization code in the callback URL.")
+		fmt.Println("Example: http://localhost:8081/callback?code=<authorization_code>")
+		fmt.Println("Press Enter to continue with token exchange...")
+		fmt.Scanln() // Wait for user to press Enter before proceeding
 
 		// Exchange authorization code for tokens
 		tokens, err := exchangeCodeForTokens(tokenEndpoint, clientID, redirectURI, code, codeVerifier)
@@ -219,6 +227,9 @@ func exchangeCodeForTokens(tokenEndpoint, clientID, redirectURI, code, codeVerif
 	data.Set("code", code)
 	data.Set("code_verifier", codeVerifier)
 
+	// Log the token exchange request parameters for debugging
+	fmt.Printf("Exchanging code for tokens with:\nclient_id: %s\nredirect_uri: %s\ncode: %s\ncode_verifier: %s\n", clientID, redirectURI, code, codeVerifier)
+
 	resp, err := http.PostForm(tokenEndpoint, data)
 	if err != nil {
 		return nil, err
@@ -229,6 +240,9 @@ func exchangeCodeForTokens(tokenEndpoint, clientID, redirectURI, code, codeVerif
 	if err != nil {
 		return nil, err
 	}
+
+	// Add this line to see the response from the token endpoint
+	fmt.Printf("Token response body: %s\n", string(body))
 
 	var tokens map[string]interface{}
 	err = json.Unmarshal(body, &tokens)

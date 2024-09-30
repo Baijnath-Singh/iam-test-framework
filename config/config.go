@@ -21,6 +21,8 @@ type SolutionConfig struct {
 	TokenEndpoint        string                       `json:"token_endpoint"`
 	UserinfoEndpoint     string                       `json:"userinfo_endpoint"`
 	LogoutEndpoint       string                       `json:"logout_endpoint"`
+	AppClientID          string                       `json:"app_client_id"`
+	AppScope             string                       `json:"app_scope"`
 	TokenRequestParams   map[string]map[string]string `json:"token_request_params,omitempty"` // Field for token request params
 }
 
