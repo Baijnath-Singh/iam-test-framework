@@ -163,3 +163,20 @@ go build -o iam-test-framework cmd/main.go
       User Info Retrieval
 
 3. Input the necessary parameters as prompted, based on the selected functionality.
+
+## How to test SSO/SLO
+Register web application for App1
+Register web application for App2
+Clone https://github.com/Baijnath-Singh/iam-test-framework/tree/master/zitadel-sso-slo-test
+In two separate terminals run App1 and App2 <go run main.go>
+Open url http://localhost:3001 and http://localhost:3002 for App1 and App2 respectively
+Make sure we are running the App first time or clear the cookies
+For SSO
+Click on login  link of App1, you would be redirected to login page where cred needs to be entered. 
+After successful login, user information along with logout link is displayed on browser.
+Click login link of App2  You would not redirected to login page as there is session active with App1 login. 
+User information along with logout link is displayed on browser.
+For SLO
+Click logout link either of App1 or App2
+After clicking logout link of say App1, you would be redirected to logout page
+Try login to App2 now, you would be redirected to singed out page and will have to login to App2
